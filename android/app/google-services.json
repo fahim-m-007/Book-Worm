@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "775316697849",
+    "project_id": "bookworm-1edc5",
+    "storage_bucket": "bookworm-1edc5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775316697849:android:7ede4d02b8c55add7c6828",
+        "android_client_info": {
+          "package_name": "com.example.book_worm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4IHWYHhNQET5y5uN2GFTFcq5_mwwO0uM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
