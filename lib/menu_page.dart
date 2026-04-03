@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
 
 class MenuPage extends StatelessWidget {
@@ -6,6 +7,8 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: ListView(
@@ -15,7 +18,8 @@ class MenuPage extends StatelessWidget {
             height: 180,
             color: const Color(0xFFFF8C42),
             child: Center(
-              child: ElevatedButton(
+              child: user == null
+                  ? ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: const Color(0xFFFF8C42),
@@ -29,6 +33,38 @@ class MenuPage extends StatelessWidget {
                   );
                 },
                 child: const Text("Login / Register"),
+              )
+                  : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    user.email ?? "",
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: const Color(0xFFFF8C42),
+                    ),
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
+                      if (context.mounted) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text("Logout"),
+                  ),
+                ],
               ),
             ),
           ),

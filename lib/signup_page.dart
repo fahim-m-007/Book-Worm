@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'home_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -15,6 +17,71 @@ class _SignUpPageState extends State<SignUpPage> {
 
   bool isPasswordHidden = true;
   bool isConfirmPasswordHidden = true;
+  bool isLoading = false;
+
+  Future<void> _signUp() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+    final confirmPassword = confirmPasswordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please fill in all fields")),
+      );
+      return;
+    }
+
+    if (password != confirmPassword) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Passwords do not match")),
+      );
+      return;
+    }
+
+    if (password.length < 6) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Password must be at least 6 characters")),
+      );
+      return;
+    }
+
+    setState(() => isLoading = true);
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      if (!mounted) return;
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      String message;
+      switch (e.code) {
+        case 'email-already-in-use':
+          message = "An account already exists with this email.";
+          break;
+        case 'invalid-email':
+          message = "Invalid email address.";
+          break;
+        case 'weak-password':
+          message = "Password is too weak. Use at least 6 characters.";
+          break;
+        default:
+          message = "Sign up failed. Please try again.";
+      }
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    } finally {
+      if (mounted) setState(() => isLoading = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +166,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          isConfirmPasswordHidden =
-                          !isConfirmPasswordHidden;
+                          isConfirmPasswordHidden = !isConfirmPasswordHidden;
                         });
                       },
                     ),
@@ -119,27 +185,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    onPressed: () {
-
-                      String password = passwordController.text;
-                      String confirmPassword =
-                          confirmPasswordController.text;
-
-                      if (password != confirmPassword) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Passwords do not match"),
-                          ),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Registered Successfully"),
-                          ),
-                        );
-                      }
-                    },
-                    child: const Text(
+                    onPressed: isLoading ? null : _signUp,
+                    child: isLoading
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text(
                       "Sign Up",
                       style: TextStyle(
                         color: Colors.white,
