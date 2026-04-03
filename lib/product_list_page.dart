@@ -3,7 +3,7 @@ import 'product_model.dart';
 import 'product_details_page.dart';
 import 'book_data.dart';
 
-class ProductListPage extends StatelessWidget {
+class ProductListPage extends StatefulWidget {
   final String sectionName;
 
   const ProductListPage({
@@ -12,15 +12,57 @@ class ProductListPage extends StatelessWidget {
   });
 
   @override
+  State<ProductListPage> createState() => _ProductListPageState();
+}
+
+class _ProductListPageState extends State<ProductListPage> {
+
+  String selectedSort = "None";
+  late List<Product> products;
+
+  @override
+  void initState() {
+    super.initState();
+    products = List.from(bookDatabase[widget.sectionName] ?? []);
+  }
+
+  void sortProducts(String value) {
+    setState(() {
+      selectedSort = value;
+
+      if (value == "Low to High") {
+        products.sort((a, b) => a.price.compareTo(b.price));
+      } else if (value == "High to Low") {
+        products.sort((a, b) => b.price.compareTo(a.price));
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final List<Product> products =
-        bookDatabase[sectionName] ?? [];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(sectionName),
+        title: Text(widget.sectionName),
         centerTitle: true,
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: sortProducts,
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: "Low to High",
+                child: Text("Price: Low → High"),
+              ),
+              const PopupMenuItem(
+                value: "High to Low",
+                child: Text("Price: High → Low"),
+              ),
+            ],
+            icon: const Icon(Icons.sort),
+          ),
+        ],
       ),
+
       body: products.isEmpty
           ? const Center(
         child: Text(
@@ -39,6 +81,7 @@ class ProductListPage extends StatelessWidget {
           childAspectRatio: 0.65,
         ),
         itemBuilder: (context, index) {
+
           final product = products[index];
 
           return GestureDetector(
@@ -55,6 +98,7 @@ class ProductListPage extends StatelessWidget {
               crossAxisAlignment:
               CrossAxisAlignment.start,
               children: [
+
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -72,7 +116,9 @@ class ProductListPage extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 const SizedBox(height: 6),
+
                 Text(
                   product.title,
                   maxLines: 2,
@@ -80,11 +126,13 @@ class ProductListPage extends StatelessWidget {
                   style: const TextStyle(
                       fontWeight: FontWeight.w600),
                 ),
+
                 Text(
                   product.author,
                   style: const TextStyle(
                       color: Colors.grey),
                 ),
+
                 Text(
                   "৳${product.price}",
                   style: const TextStyle(
