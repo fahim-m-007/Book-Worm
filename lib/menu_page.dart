@@ -10,49 +10,81 @@ class MenuPage extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      body: ListView(
-        children: [
-
-          Container(
-            height: 180,
-            color: const Color(0xFFFF8C42),
-            child: Center(
-              child: user == null
-                  ? ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: const Color(0xFFFF8C42),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    ),
-                  );
-                },
-                child: const Text("Login / Register"),
-              )
-                  : Column(
+      backgroundColor: const Color(0xFFF5F5F5),
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Container(
+              width: double.infinity,
+              color: const Color(0xFFFF8C42),
+              padding: const EdgeInsets.symmetric(vertical: 28),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const CircleAvatar(
+                    radius: 28,
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.person,
+                      size: 34,
+                      color: Color(0xFFFF8C42),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
                   Text(
-                    user.email ?? "",
+                    user?.email ?? "Guest User",
                     style: const TextStyle(
                       color: Colors.white,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
                     ),
                   ),
                   const SizedBox(height: 12),
-                  ElevatedButton(
+                  user == null
+                      ? ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFFFF8C42),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 10,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      elevation: 0,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Login / Register",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  )
+                      : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: const Color(0xFFFF8C42),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 28,
+                        vertical: 10,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      elevation: 0,
                     ),
                     onPressed: () async {
                       await FirebaseAuth.instance.signOut();
+
                       if (context.mounted) {
                         Navigator.pushReplacement(
                           context,
@@ -62,56 +94,82 @@ class MenuPage extends StatelessWidget {
                         );
                       }
                     },
-                    child: const Text("Logout"),
+                    child: const Text(
+                      "Logout",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
 
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              "Quick Actions",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            const SizedBox(height: 12),
+
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Text(
+                "Quick Actions",
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
               ),
             ),
-          ),
 
-          buildMenuItem(Icons.category, "Subjects"),
-          buildMenuItem(Icons.edit, "Authors"),
-          buildMenuItem(Icons.business, "Publishers"),
-          buildMenuItem(Icons.local_offer, "Offers"),
+            buildMenuItem(Icons.category, "Subjects"),
+            buildMenuItem(Icons.edit, "Authors"),
+            buildMenuItem(Icons.business, "Publishers"),
+            buildMenuItem(Icons.local_offer, "Offers"),
 
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              "Account",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            const SizedBox(height: 14),
+
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Text(
+                "Account",
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
               ),
             ),
-          ),
 
-          buildMenuItem(Icons.phone, "Contact Us"),
-          buildMenuItem(Icons.info, "About Us"),
-          buildMenuItem(Icons.share, "Share App"),
-          buildMenuItem(Icons.star, "Rate & Review"),
+            buildMenuItem(Icons.phone, "Contact Us"),
+            buildMenuItem(Icons.info, "About Us"),
+            buildMenuItem(Icons.share, "Share App"),
+            buildMenuItem(Icons.star, "Rate & Review"),
 
-          const SizedBox(height: 30),
-        ],
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
 
   static Widget buildMenuItem(IconData icon, String title) {
     return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+      leading: Icon(
+        icon,
+        color: Colors.black54,
+        size: 24,
+      ),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 18,
+          color: Colors.black87,
+        ),
+      ),
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        size: 18,
+        color: Colors.black54,
+      ),
       onTap: () {},
     );
   }
