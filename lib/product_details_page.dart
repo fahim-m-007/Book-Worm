@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'product_model.dart';
 import 'cart_manager.dart';
+import 'wishlist_manager.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   final Product product;
@@ -12,6 +13,8 @@ class ProductDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isWishlisted = WishlistManager.isInWishlist(product);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(product.title),
@@ -112,21 +115,33 @@ class ProductDetailsPage extends StatelessWidget {
                     minimumSize: const Size(double.infinity, 50),
                   ),
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Added to Wishlist ❤️"),
-                      ),
-                    );
+                    if (!WishlistManager.isInWishlist(product)) {
+                      WishlistManager.wishlistItems.add(product);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Added to Wishlist ❤️"),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Already in Wishlist ✔"),
+                        ),
+                      );
+                    }
                   },
                   child: const Text(
-                    "Wishlist",
-                    style: TextStyle(fontSize: 16, color: Colors.black),
+                    "Add to Wishlist",
+                    style: TextStyle(
+                        fontSize: 16, color: Colors.black),
                   ),
                 ),
               ),
 
               const SizedBox(width: 12),
 
+              /// 🛒 ADD TO CART
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -139,13 +154,13 @@ class ProductDetailsPage extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text("Added to Cart 🛒"),
-                        duration: Duration(seconds: 2),
                       ),
                     );
                   },
                   child: const Text(
                     "Add to Cart",
-                    style: TextStyle(fontSize: 16, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: 16, color: Colors.black),
                   ),
                 ),
               ),

@@ -6,6 +6,7 @@ import 'book_data.dart';
 import 'product_model.dart';
 import 'product_details_page.dart';
 import 'product_list_page.dart';
+import 'wishlist_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -116,6 +117,20 @@ class _HomeContentState extends State<HomeContent> {
         ),
 
         actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.favorite_border,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const WishlistPage(),
+                ),
+              );
+            },
+          ),
           IconButton(
             icon: Icon(
               isSearching ? Icons.close : Icons.search,
@@ -267,8 +282,7 @@ class _HomeContentState extends State<HomeContent> {
                         "See More",
                         style: TextStyle(
                           color: Color(0xFF00A2E8),
-                          fontWeight:
-                          FontWeight.w600,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -280,8 +294,7 @@ class _HomeContentState extends State<HomeContent> {
                 SizedBox(
                   height: 240,
                   child: ListView.builder(
-                    scrollDirection:
-                    Axis.horizontal,
+                    scrollDirection: Axis.horizontal,
                     itemCount:
                     limitedProducts.length,
                     itemBuilder:
@@ -321,27 +334,22 @@ class _HomeContentState extends State<HomeContent> {
                                   BorderRadius
                                       .circular(
                                       10),
-                                  color: Colors
-                                      .grey
+                                  color: Colors.grey
                                       .shade300,
                                 ),
-                                child:
-                                ClipRRect(
+                                child: ClipRRect(
                                   borderRadius:
                                   BorderRadius
                                       .circular(
                                       10),
-                                  child:
-                                  Image.asset(
+                                  child: Image.asset(
                                     product.image,
-                                    fit: BoxFit
-                                        .contain,
+                                    fit: BoxFit.contain,
                                   ),
                                 ),
                               ),
 
-                              const SizedBox(
-                                  height: 6),
+                              const SizedBox(height: 6),
 
                               Text(
                                 product.title,
@@ -353,23 +361,20 @@ class _HomeContentState extends State<HomeContent> {
                                 const TextStyle(
                                   fontSize: 13,
                                   fontWeight:
-                                  FontWeight
-                                      .w600,
+                                  FontWeight.w600,
                                 ),
                               ),
 
-                              const SizedBox(
-                                  height: 4),
+                              const SizedBox(height: 4),
 
                               Text(
                                 "৳${product.price.toStringAsFixed(0)}",
                                 style:
                                 const TextStyle(
-                                  color: Color(
-                                      0xFF00A2E8),
+                                  color:
+                                  Color(0xFF00A2E8),
                                   fontWeight:
-                                  FontWeight
-                                      .bold,
+                                  FontWeight.bold,
                                 ),
                               ),
                             ],

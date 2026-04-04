@@ -356,10 +356,40 @@ Map<String, List<Product>> bookDatabase = {
       description:
       "Full Preparation package for Bangla in university admission",
     ),
-
-
   ],
-
-
+  "Bookmarks": [
+    Product(
+      title: "Exclusive Design Bookmarks Combo (6 Pc)",
+      author:"",
+      price: 99,
+      image: "assets/images/bm1.jpg",
+      description:
+      "~Premium quality. ~High quality than others. ~Bookmark same as picture ~Unique Bookmark",
+    ),
+    Product(
+      title: "High Quality Bookmarks Combo (7 Pc)",
+      author:"",
+      price: 140,
+      image: "assets/images/bm2.jpg",
+      description:
+      "~Premium quality. ~High quality than others. ~Bookmark same as picture ~Unique Bookmark",
+    ),
+    Product(
+      title: "Premium Quality Bookish Bookmarks Combo (4 Pc)",
+      author:"",
+      price: 65,
+      image: "assets/images/bm5.jpg",
+      description:
+      "~Premium quality. ~High quality than others. ~Bookmark same as picture ~Unique Bookmark",
+    ),
+    Product(
+      title: "Mini bookmarks (8pc)",
+      author:"",
+      price: 150,
+      image: "assets/images/bm4.jpg",
+      description:
+      "Aesthetic Bookmarks~ hard paper~ same as photo",
+    ),
+  ],
 
 };
