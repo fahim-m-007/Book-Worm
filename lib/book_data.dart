@@ -437,6 +437,33 @@ Map<String, List<Product>> bookDatabase = {
       description:
       "Best Geometry Box in the industry.",
     ),
+    Product(
+      title: "Classic Metal Swing Arm Desk Lamp MT-810",
+      author: "Non Brand",
+      price: 1590,
+      image: "assets/images/lamp.png",
+      description:
+      "Watt : 60W"
+          "Dimensions	Height: 67 cm, Width: 15.5 cm, Depth: 15.5 cm"
+          "Can be rotated 360 degree."
+          "Voltage :220-240V"
+          "Body Finish : Glossy"
+          "Application :Entrance, dining room, bathroom, warehouse, living room, corridor, balcony, study, bedroom, courtyard, exhibition hall, kitchen, etc."
+          ,
+    ),
+    Product(
+      title: "USB Rechargeable LED Book Reading Light/ Portable Bookmark Eye Protection Bedside Clip Lamp ",
+      author: "Non Brand",
+      price: 1210,
+      image: "assets/images/ledLight.png",
+      description:
+      "The USB Rechargeable LED Bookmark Reading Light provides 25 lumens across three adjustable color modes. With a 200mAh battery, this clip-on lamp maintains an 8-hour runtime. Its 32g ABS plastic frame works without external cables."
+          "Built-in USB Plug: Integrated male connector requires no external charging cables. Plugs directly into 5V ports."
+        "315-Degree Flexible Holder: ABS plastic arm adjusts to precise illumination angles. Prevents glare on glossy paper."
+       "32g Lightweight Build: Ultra-thin profile serves as a physical bookmark. Won't damage thin paper."
+    "200mAh Battery Capacity: Full charge requires 1.5 hours via 5V input. Supports reading during load shedding."
+    "Triple Color Temperature: Ranges from 3000K warm to 6000K cool light. Reduces eye strain at night.",
+    ),
   ],
 
 };
