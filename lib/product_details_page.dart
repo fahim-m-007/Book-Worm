@@ -141,7 +141,7 @@ class ProductDetailsPage extends StatelessWidget {
 
               const SizedBox(width: 12),
 
-              /// 🛒 ADD TO CART
+
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(

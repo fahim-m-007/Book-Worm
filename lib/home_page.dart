@@ -73,16 +73,26 @@ class _HomeContentState extends State<HomeContent> {
   String searchQuery = "";
   TextEditingController searchController = TextEditingController();
 
+
+  late List<String> randomCategories;
+
+  @override
+  void initState() {
+    super.initState();
+
+    randomCategories = bookDatabase.keys.toList()..shuffle();
+    randomCategories = randomCategories.take(6).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
 
-    // 🔥 ALL PRODUCTS
+
     List<Product> allProducts = [];
     bookDatabase.forEach((category, products) {
       allProducts.addAll(products);
     });
 
-    // 🔍 FILTER
     List<Product> filteredProducts = allProducts.where((product) {
       final title = product.title.toLowerCase();
       final query = searchQuery.toLowerCase();
@@ -117,20 +127,7 @@ class _HomeContentState extends State<HomeContent> {
         ),
 
         actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.favorite_border,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const WishlistPage(),
-                ),
-              );
-            },
-          ),
+
           IconButton(
             icon: Icon(
               isSearching ? Icons.close : Icons.search,
@@ -146,6 +143,23 @@ class _HomeContentState extends State<HomeContent> {
               });
             },
           ),
+
+          // ❤️ WISHLIST ONLY WHEN NOT SEARCHING
+          if (!isSearching)
+            IconButton(
+              icon: const Icon(
+                Icons.favorite_border,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const WishlistPage(),
+                  ),
+                );
+              },
+            ),
         ],
       ),
 
@@ -235,7 +249,8 @@ class _HomeContentState extends State<HomeContent> {
 
           const SizedBox(height: 20),
 
-          ...bookDatabase.keys.map((category) {
+          // ✅ RANDOM 6 CATEGORIES
+          ...randomCategories.map((category) {
 
             final List<Product> products =
                 bookDatabase[category] ?? [];
@@ -332,16 +347,14 @@ class _HomeContentState extends State<HomeContent> {
                                 BoxDecoration(
                                   borderRadius:
                                   BorderRadius
-                                      .circular(
-                                      10),
+                                      .circular(10),
                                   color: Colors.grey
                                       .shade300,
                                 ),
                                 child: ClipRRect(
                                   borderRadius:
                                   BorderRadius
-                                      .circular(
-                                      10),
+                                      .circular(10),
                                   child: Image.asset(
                                     product.image,
                                     fit: BoxFit.contain,
