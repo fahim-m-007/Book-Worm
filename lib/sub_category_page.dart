@@ -119,7 +119,7 @@ class SubCategoryPage extends StatelessWidget {
       case "Accessories":
         return [
           "Bookmarks",
-          "Book Lights",
+          "Study & Desk Supplies",
           "Notebooks",
           "Stationery",
         ];

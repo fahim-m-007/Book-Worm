@@ -428,4 +428,15 @@ Map<String, List<Product>> bookDatabase = {
     ),
   ],
 
+  "Study & Desk Supplies": [
+    Product(
+      title: "Faber Castell Geometry Box ",
+      author: "Faber Castell",
+      price: 210,
+      image: "assets/images/Faver-castell.webp",
+      description:
+      "Best Geometry Box in the industry.",
+    ),
+  ],
+
 };
