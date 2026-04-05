@@ -47,7 +47,6 @@ class SubCategoryPage extends StatelessWidget {
     );
   }
 
-  // 🔥 Dummy Data Generator
   List<String> _generateDummySubCategories(String category) {
     switch (category) {
       case "Academic Books":

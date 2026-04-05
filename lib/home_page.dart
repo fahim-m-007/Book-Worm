@@ -144,7 +144,6 @@ class _HomeContentState extends State<HomeContent> {
             },
           ),
 
-          // ❤️ WISHLIST ONLY WHEN NOT SEARCHING
           if (!isSearching)
             IconButton(
               icon: const Icon(
@@ -249,7 +248,6 @@ class _HomeContentState extends State<HomeContent> {
 
           const SizedBox(height: 20),
 
-          // ✅ RANDOM 6 CATEGORIES
           ...randomCategories.map((category) {
 
             final List<Product> products =

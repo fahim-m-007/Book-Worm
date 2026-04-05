@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
+import 'contact_us_page.dart';
+import 'about_us_page.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
@@ -14,6 +16,7 @@ class MenuPage extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
+
             Container(
               width: double.infinity,
               color: const Color(0xFFFF8C42),
@@ -30,7 +33,9 @@ class MenuPage extends StatelessWidget {
                       color: Color(0xFFFF8C42),
                     ),
                   ),
+
                   const SizedBox(height: 14),
+
                   Text(
                     user?.email ?? "Guest User",
                     style: const TextStyle(
@@ -39,7 +44,9 @@ class MenuPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
                   const SizedBox(height: 12),
+
                   user == null
                       ? ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -64,9 +71,7 @@ class MenuPage extends StatelessWidget {
                     },
                     child: const Text(
                       "Login / Register",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                   )
                       : ElevatedButton(
@@ -96,52 +101,28 @@ class MenuPage extends StatelessWidget {
                     },
                     child: const Text(
                       "Logout",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],
               ),
             ),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 20),
 
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(
-                "Quick Actions",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                ),
-              ),
+            buildMenuItem(
+              context,
+              Icons.phone,
+              "Contact Us",
+              const ContactUsPage(),
             ),
 
-            buildMenuItem(Icons.category, "Subjects"),
-            buildMenuItem(Icons.edit, "Authors"),
-            buildMenuItem(Icons.business, "Publishers"),
-            buildMenuItem(Icons.local_offer, "Offers"),
-
-            const SizedBox(height: 14),
-
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(
-                "Account",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                ),
-              ),
+            buildMenuItem(
+              context,
+              Icons.info,
+              "About Us",
+              const AboutUsPage(),
             ),
-
-            buildMenuItem(Icons.phone, "Contact Us"),
-            buildMenuItem(Icons.info, "About Us"),
-            buildMenuItem(Icons.share, "Share App"),
-            buildMenuItem(Icons.star, "Rate & Review"),
 
             const SizedBox(height: 20),
           ],
@@ -150,14 +131,22 @@ class MenuPage extends StatelessWidget {
     );
   }
 
-  static Widget buildMenuItem(IconData icon, String title) {
+  static Widget buildMenuItem(
+      BuildContext context,
+      IconData icon,
+      String title,
+      Widget page,
+      ) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+      contentPadding:
+      const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+
       leading: Icon(
         icon,
         color: Colors.black54,
         size: 24,
       ),
+
       title: Text(
         title,
         style: const TextStyle(
@@ -165,12 +154,21 @@ class MenuPage extends StatelessWidget {
           color: Colors.black87,
         ),
       ),
+
       trailing: const Icon(
         Icons.arrow_forward_ios,
         size: 18,
         color: Colors.black54,
       ),
-      onTap: () {},
+
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => page,
+          ),
+        );
+      },
     );
   }
 }

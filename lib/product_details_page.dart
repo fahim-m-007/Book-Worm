@@ -20,7 +20,6 @@ class ProductDetailsPage extends StatelessWidget {
         title: Text(product.title),
         centerTitle: true,
         actions: const [
-          Icon(Icons.share),
           SizedBox(width: 10),
         ],
       ),
