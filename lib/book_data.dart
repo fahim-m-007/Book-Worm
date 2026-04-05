@@ -12,14 +12,6 @@ Map<String, List<Product>> bookDatabase = {
       "Toru, a quiet and preternaturally serious young college student in Tokyo, is devoted to Naoko, a beautiful and introspective young woman, but their mutual passion is marked by the tragic death of their best friend years before. Toru begins to adapt to campus life and the loneliness and isolation he faces there, but Naoko finds the pressures and responsibilities of life unbearable. As she retreats further into her own world, Toru finds himself reaching out to others and drawn to a fiercely independent and sexually liberated young woman. A magnificent blending of the music, the mood, and the ethos that was the sixties with the story of one college student's romantic coming of age, Norwegian Wood brilliantly recaptures a young man's first, hopeless, and heroic love..",
     ),
     Product(
-      title: "Aust Cadmium Iodide",
-      author: "Haruki Murakami",
-      price: 1258,
-      image: "assets/images/Norwegian Wood.jpg",
-      description:
-      "Toru, a quiet and preternaturally serious young college student in Tokyo, is devoted to Naoko, a beautiful and introspective young woman, but their mutual passion is marked by the tragic death of their best friend years before. Toru begins to adapt to campus life and the loneliness and isolation he faces there, but Naoko finds the pressures and responsibilities of life unbearable. As she retreats further into her own world, Toru finds himself reaching out to others and drawn to a fiercely independent and sexually liberated young woman. A magnificent blending of the music, the mood, and the ethos that was the sixties with the story of one college student's romantic coming of age, Norwegian Wood brilliantly recaptures a young man's first, hopeless, and heroic love..",
-    ),
-    Product(
         title: "Dance Dance Dance",
         author: "Haruki Murakami",
         price: 1098,
@@ -34,32 +26,6 @@ Map<String, List<Product>> bookDatabase = {
         image: "assets/images/Sputnik Sweetheart.jpg",
         description:
         "Sumire is in love with a woman seventeen years her senior. But whereas Miu is glamorous and successful, Sumire is an aspiring writer who dresses in an oversized second-hand coat and heavy boots like a character in a Kerouac novel.Sumire spends hours on the phone talking to her best friend K about the big questions in life: what is sexual desire, and should she ever tell Miu how she feels for her? Meanwhile K wonders whether he should confess his own unrequited love for Sumire.Then, a desperate Miu calls from a small Greek island: Sumire has mysteriously vanished..."
-    ),
-  ],
-  "Fantasy":[
-    Product(
-        title: "Kafka On The Shore",
-        author: "Haruki Murakami",
-        price: 1258,
-        image: "assets/images/Kafka On The Shore.png",
-        description:
-        "Kafka on the Shore, a tour de force of metaphysical reality, is powered by two remarkable characters: a teenage boy, Kafka Tamura, who runs away from home either to escape a gruesome oedipal prophecy or to search for his long-missing mother and sister; and an aging simpleton called Nakata, who never recovered from a wartime affliction and now is drawn toward Kafka for reasons that, like the most basic activities of daily life, he cannot fathom. Their odyssey, as mysterious to them as it is to us, is enriched throughout by vivid accomplices and mesmerizing events. Cats and people carry on conversations, a ghostlike pimp employs a Hegel-quoting prostitute, a forest harbors soldiers apparently unaged since World War II, and rainstorms of fish (and worse) fall from the sky. There is a brutal murder, with the identity of both victim and perpetrator a riddle—yet this, along with everything else, is eventually answered, just as the entwined destinies of Kafka and Nakata are gradually revealed, with one escaping his fate entirely and the other given a fresh start on his own."
-    ),
-    Product(
-        title: "Dance Dance Dance",
-        author: "Haruki Murakami",
-        price: 1098,
-        image: "assets/images/Dance Dance Dance.jpg",
-        description:
-        "High-class call girls billed to Mastercard. A psychic 13-year-old dropout with a passion for Talking Heads. A hunky matinee idol doomed to play dentists and teachers. A one-armed beach-combing poet, an uptight hotel clerk and one very bemused narrator caught in the web of advanced capitalist mayhem. Combine this offbeat cast of characters with Murakami's idiosyncratic prose and out comes Dance Dance Dance."
-    ),
-    Product(
-        title: "After Dark",
-        author: "Haruki Murakami",
-        price: 1218,
-        image: "assets/images/After Dark.png",
-        description:
-        "Nineteen-year-old Mari is waiting out the night in an anonymous Denny’s when she meets a young man who insists he knows her older sister, thus setting her on an odyssey through the sleeping city. In the space of a single night, the lives of a diverse cast of Tokyo residents—models, prostitutes, mobsters, and musicians—collide in a world suspended between fantasy and reality. Utterly enchanting and infused with surrealism, After Dark is a thrilling account of the magical hours separating midnight from daw"
     ),
   ],
   "Bangladesh History": [
@@ -109,6 +75,33 @@ Map<String, List<Product>> bookDatabase = {
     ),
 
   ],
+  "Fantasy":[
+    Product(
+        title: "Kafka On The Shore",
+        author: "Haruki Murakami",
+        price: 1258,
+        image: "assets/images/Kafka On The Shore.png",
+        description:
+        "Kafka on the Shore, a tour de force of metaphysical reality, is powered by two remarkable characters: a teenage boy, Kafka Tamura, who runs away from home either to escape a gruesome oedipal prophecy or to search for his long-missing mother and sister; and an aging simpleton called Nakata, who never recovered from a wartime affliction and now is drawn toward Kafka for reasons that, like the most basic activities of daily life, he cannot fathom. Their odyssey, as mysterious to them as it is to us, is enriched throughout by vivid accomplices and mesmerizing events. Cats and people carry on conversations, a ghostlike pimp employs a Hegel-quoting prostitute, a forest harbors soldiers apparently unaged since World War II, and rainstorms of fish (and worse) fall from the sky. There is a brutal murder, with the identity of both victim and perpetrator a riddle—yet this, along with everything else, is eventually answered, just as the entwined destinies of Kafka and Nakata are gradually revealed, with one escaping his fate entirely and the other given a fresh start on his own."
+    ),
+    Product(
+        title: "Dance Dance Dance",
+        author: "Haruki Murakami",
+        price: 1098,
+        image: "assets/images/Dance Dance Dance.jpg",
+        description:
+        "High-class call girls billed to Mastercard. A psychic 13-year-old dropout with a passion for Talking Heads. A hunky matinee idol doomed to play dentists and teachers. A one-armed beach-combing poet, an uptight hotel clerk and one very bemused narrator caught in the web of advanced capitalist mayhem. Combine this offbeat cast of characters with Murakami's idiosyncratic prose and out comes Dance Dance Dance."
+    ),
+    Product(
+        title: "After Dark",
+        author: "Haruki Murakami",
+        price: 1218,
+        image: "assets/images/After Dark.png",
+        description:
+        "Nineteen-year-old Mari is waiting out the night in an anonymous Denny’s when she meets a young man who insists he knows her older sister, thus setting her on an odyssey through the sleeping city. In the space of a single night, the lives of a diverse cast of Tokyo residents—models, prostitutes, mobsters, and musicians—collide in a world suspended between fantasy and reality. Utterly enchanting and infused with surrealism, After Dark is a thrilling account of the magical hours separating midnight from daw"
+    ),
+  ],
+
 
   "Crime & Mystery": [
     Product(
@@ -389,6 +382,49 @@ Map<String, List<Product>> bookDatabase = {
       image: "assets/images/bm4.jpg",
       description:
       "Aesthetic Bookmarks~ hard paper~ same as photo",
+    ),
+  ],
+
+  "Stationery": [
+    Product(
+      title: "Casio FX-991ES Plus (2nd Edition) Non-Programmable Scientific Calculator Black",
+      author:"Casio",
+      price: 2500,
+      image: "assets/images/fx-991es-plus-ii.jpg",
+      description:
+      "Stay ahead in your studies or professional work with the Casio fx-991ES Plus 2nd Edition Scientific Calculator. Designed for precision, speed, and ease of use.",
+    ),
+    Product(
+        title: "Multicolor Sticky Note 400 Sheet",
+        author: "",
+        price: 190,
+        image: "assets/images/Stickynotes.jpg",
+        description:
+        "These sticky notes come in 5 different colors in a pack and can be used for noting and as an organizational tool. It has a square format so that more space is available for writing, and at the same time, your notes can easily fit into any note holder/organizer"
+    ),
+    Product(
+        title: "Matador i-Teen Rio Ball Pen Black Ink - (6 Pcs)",
+        author: "Matador Group",
+        price: 60,
+        image: "assets/images/matador_iteen.png",
+        description:
+        "The Matador i-Teen Rio Ball Pen is great for school kids and office workers. The black ink flows smoothly, which makes it easy to write. The pen is easy to hold for long periods and doesn't weigh much. "
+    ),
+    Product(
+      title: "Econo DX Ball Pen Black Ink - 10 Pcs",
+      author:"GQ",
+      price: 60,
+      image: "assets/images/Econo_DX_Ball_Pen_Black_Ink_10_Pcs-GQ_Ball_Pen.png",
+      description:
+      "Excellent Ink Quality gives you a high precision clear writing.Very good for school going children and very comfortable to write.",
+    ),
+    Product(
+      title: "Doms Neon Pencil - 1 Box",
+      author:"Doms",
+      price: 80,
+      image: "assets/images/Doms_Neon_Pencil_1.jpg",
+      description:
+      "The Doms Neon Pencil is a fun, colorful pencil that kids will love. It's simple to hold and use to write or draw. ",
     ),
   ],
 
