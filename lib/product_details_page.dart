@@ -134,7 +134,7 @@ class ProductDetailsPage extends StatelessWidget {
                   child: const Text(
                     "Add to Wishlist",
                     style: TextStyle(
-                        fontSize: 16, color: Colors.black),
+                        fontSize: 16, color: Colors.white),
                   ),
                 ),
               ),
@@ -160,7 +160,7 @@ class ProductDetailsPage extends StatelessWidget {
                   child: const Text(
                     "Add to Cart",
                     style: TextStyle(
-                        fontSize: 16, color: Colors.black),
+                        fontSize: 16, color: Colors.white),
                   ),
                 ),
               ),

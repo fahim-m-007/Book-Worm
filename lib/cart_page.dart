@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'cart_manager.dart';
+import 'order_page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -9,10 +10,8 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-
   @override
   Widget build(BuildContext context) {
-
     final cartItems = CartManager.cartItems;
 
     return Scaffold(
@@ -67,8 +66,8 @@ class _CartPageState extends State<CartPage> {
                                   Text(
                                     item.product.title,
                                     style: const TextStyle(
-                                        fontWeight:
-                                        FontWeight.bold),
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                   Text(
                                     "৳${item.product.price}",
@@ -84,15 +83,14 @@ class _CartPageState extends State<CartPage> {
                               onPressed: () {
                                 setState(() {
                                   CartManager.removeFromCart(
-                                      item.product);
+                                    item.product,
+                                  );
                                 });
                               },
                             )
                           ],
                         ),
-
                         const SizedBox(height: 10),
-
                         Row(
                           mainAxisAlignment:
                           MainAxisAlignment.spaceBetween,
@@ -111,8 +109,7 @@ class _CartPageState extends State<CartPage> {
                                 ),
                                 Text(
                                   item.quantity.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 16),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                                 IconButton(
                                   onPressed: () {
@@ -140,8 +137,6 @@ class _CartPageState extends State<CartPage> {
               },
             ),
           ),
-
-          // ORDER SUMMARY
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -153,16 +148,46 @@ class _CartPageState extends State<CartPage> {
                 _summaryRow("Shipping", CartManager.shipping),
                 const Divider(),
                 _summaryRow(
-                    "Total", CartManager.total,
-                    isTotal: true),
+                  "Total",
+                  CartManager.total,
+                  isTotal: true,
+                ),
                 const SizedBox(height: 10),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
-                    minimumSize:
-                    const Size(double.infinity, 50),
+                    minimumSize: const Size(double.infinity, 50),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    final List<Map<String, dynamic>> orderItems = [];
+
+                    for (int i = 0; i < cartItems.length; i++) {
+                      orderItems.add({
+                        "title": cartItems[i].product.title,
+                        "image": cartItems[i].product.image,
+                        "price": cartItems[i].product.price,
+                        "quantity": cartItems[i].quantity,
+                      });
+                    }
+
+                    final result = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderPage(
+                          cartItems: orderItems,
+                          subtotal: CartManager.subtotal,
+                          shipping: CartManager.shipping,
+                          total: CartManager.total,
+                        ),
+                      ),
+                    );
+
+                    if (result == true) {
+                      setState(() {
+                        CartManager.clearCart();
+                      });
+                    }
+                  },
                   child: Text(
                     "Proceed to Checkout ৳${CartManager.total.toStringAsFixed(0)}",
                     style: const TextStyle(
@@ -178,13 +203,11 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  Widget _summaryRow(String title, double value,
-      {bool isTotal = false}) {
+  Widget _summaryRow(String title, double value, {bool isTotal = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
-        mainAxisAlignment:
-        MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(title),
           Text(
