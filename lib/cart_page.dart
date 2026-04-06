@@ -191,7 +191,7 @@ class _CartPageState extends State<CartPage> {
                   child: Text(
                     "Proceed to Checkout ৳${CartManager.total.toStringAsFixed(0)}",
                     style: const TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                 )

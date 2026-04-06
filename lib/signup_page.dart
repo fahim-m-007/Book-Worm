@@ -10,7 +10,6 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
@@ -45,7 +44,9 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    setState(() => isLoading = true);
+    setState(() {
+      isLoading = true;
+    });
 
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -55,12 +56,15 @@ class _SignUpPageState extends State<SignUpPage> {
 
       if (!mounted) return;
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+            (route) => false,
       );
     } on FirebaseAuthException catch (e) {
       String message;
+
       switch (e.code) {
         case 'email-already-in-use':
           message = "An account already exists with this email.";
@@ -74,13 +78,27 @@ class _SignUpPageState extends State<SignUpPage> {
         default:
           message = "Sign up failed. Please try again.";
       }
+
       if (!mounted) return;
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(message)),
       );
     } finally {
-      if (mounted) setState(() => isLoading = false);
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -98,17 +116,13 @@ class _SignUpPageState extends State<SignUpPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-
                 const SizedBox(height: 5),
-
                 Image.asset(
                   'assets/images/bookworm.png',
                   height: 250,
                   fit: BoxFit.contain,
                 ),
-
                 const SizedBox(height: 35),
-
                 TextField(
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
@@ -120,9 +134,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     prefixIcon: Icon(Icons.email),
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
                 TextField(
                   controller: passwordController,
                   obscureText: isPasswordHidden,
@@ -146,9 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
                 TextField(
                   controller: confirmPasswordController,
                   obscureText: isConfirmPasswordHidden,
@@ -172,9 +182,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 30),
-
                 SizedBox(
                   width: double.infinity,
                   height: 55,

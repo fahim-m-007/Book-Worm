@@ -4,8 +4,29 @@ import 'login_page.dart';
 import 'contact_us_page.dart';
 import 'about_us_page.dart';
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
+
+  @override
+  State<MenuPage> createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+
+    if (!mounted) return;
+
+    setState(() {});
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginPage(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,18 +108,7 @@ class MenuPage extends StatelessWidget {
                       ),
                       elevation: 0,
                     ),
-                    onPressed: () async {
-                      await FirebaseAuth.instance.signOut();
-
-                      if (context.mounted) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
-                          ),
-                        );
-                      }
-                    },
+                    onPressed: logout,
                     child: const Text(
                       "Logout",
                       style: TextStyle(fontWeight: FontWeight.w600),
