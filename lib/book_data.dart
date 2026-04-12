@@ -164,12 +164,12 @@ Map<String, List<Product>> bookDatabase = {
         title: "Contract (কন্ট্রাক্ট)",
         author: "Mohammad Nazim Uddin",
         price: 525,
-        image: "assets/images/Nemesis(নেমেসিস).jpg",
+        image: "assets/images/Contract.jpg",
         description:
         "পাঁচ লক্ষ টাকা দামের একটি টেলিফোন কল! কোটি টাকার ষড়যন্ত্র। পেশাদার খুনি বাস্টার্ডকে ফিরে আসতে হলো দেশে; একটি লাইফটাইম কন্ট্রাক্ট । আত্মবিশ্বাসী বাস্টার্ড তার মিশনে নেমে পড়তেই সব কিছু জট পাকাতে শুরু করে। বিশাল এক ষড়যন্ত্রের অংশ হয়ে যায় সে। এ দিকে দৃশ্যপটে আর্বিভূত হয় হোমিসাইড ইনভেস্টিগেটর জেফরি বেগ। তাদের দু’জনের লক্ষ্য একেবারেই ভিন্ন। ষড়যন্ত্র আর পাল্টা ষড়যন্ত্র-রাজনীতি আর অন্ধকার জগতের উপাখ্যান।"
     ),
     Product(
-        title: "Nexas (নেক্সাস)",
+        title: "Nexus (নেক্সাস)",
         author: "Mohammad Nazim Uddin",
         price: 550,
         image: "assets/images/Nexas.jpg",

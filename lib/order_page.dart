@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'order_history_manager.dart';
 class OrderPage extends StatefulWidget {
   final List<Map<String, dynamic>> cartItems;
   final double subtotal;
@@ -39,6 +39,13 @@ class _OrderPageState extends State<OrderPage> {
     if (!formKey.currentState!.validate()) {
       return;
     }
+
+    // SAVE ORDER HERE
+    OrderHistoryManager.addOrder({
+      "items": widget.cartItems,
+      "total": widget.total,
+      "date": DateTime.now().toString(),
+    });
 
     showDialog(
       context: context,

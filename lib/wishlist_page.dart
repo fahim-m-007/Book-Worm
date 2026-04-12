@@ -29,7 +29,7 @@ class _WishlistPageState extends State<WishlistPage> {
           final product = wishlistItems[index];
 
           return Card(
-            margin: const EdgeInsets.all(10),
+            margin: const EdgeInsets.all(5),
             child: ListTile(
               leading: Image.asset(product.image, width: 50),
               title: Text(product.title),

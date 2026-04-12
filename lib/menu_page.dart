@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
 import 'contact_us_page.dart';
 import 'about_us_page.dart';
+import 'order_history_page.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -132,6 +133,12 @@ class _MenuPageState extends State<MenuPage> {
               Icons.info,
               "About Us",
               const AboutUsPage(),
+            ),
+            buildMenuItem(
+              context,
+              Icons.history,
+              "Order History",
+              const OrderHistoryPage(),
             ),
 
             const SizedBox(height: 20),

@@ -117,7 +117,7 @@ class _ProductListPageState extends State<ProductListPage> {
                   ),
                 ),
 
-                const SizedBox(height: 6),
+                const SizedBox(height: 5),
 
                 Text(
                   product.title,

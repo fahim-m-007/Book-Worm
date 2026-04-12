@@ -35,7 +35,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
         child: ListView(
           children: [
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
 
             const Text(
               "Phone Numbers",
